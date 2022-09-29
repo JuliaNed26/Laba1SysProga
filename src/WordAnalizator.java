@@ -65,9 +65,10 @@ public class WordAnalizator {
             int symbolNum;
             try {
                 while ((symbolNum = buffer.read()) != -1) {
-                    char symbol = (char) symbolNum;
+                    char symbol = Character.toLowerCase((char)symbolNum);
                     if (separators.contains(symbol)) {
-                        addIfAppropriate(wordSb.toString(), appropriateWords);
+                        String word = wordSb.length() < 30 ? wordSb.toString() : wordSb.toString().substring(0,30);
+                        addIfAppropriate(word, appropriateWords);
                         wordSb.setLength(0);
                     } else {
                         wordSb.append(symbol);
